@@ -1,14 +1,16 @@
+export const NOTHING = ''
 export const DIVIDER_COMMA = ',';
 export const DIVIDER_HYPHEN = '-';
 export const MONTH = 12;
 export const FIRST_DAY_OF_MONTH = 1;
 export const LAST_DAY_OF_MONTH = 31;
 export const CHRISTMAS_D_DAY = 25;
+export const EVENT_MIN_PRICE = 10000
 export const D_DAY_EVENT_STARTING_PRICE = 1000;
 export const D_DAY_EVENT_INCREASING_PRICE = 100;
 export const STARRED_DAY_EVENT_DISCOUNT = 1000;
 export const WEEK_EVENT_DISCOUNT = 2023;
-export const GIVEAWAY_EVENT_MIN_PRICE = 12;
+export const GIVEAWAY_EVENT_MIN_PRICE = 120000;
 export const MIN_AMOUNT = 1;
 export const MAX_AMOUNT = 20;
 export const COURSE = {
@@ -26,7 +28,7 @@ export const MENU = {
 	SEAFOOD_PASTA: '해산물파스타',
 	X_MAS_PASTA: '크리스마스파스타',
 	CHOCOLATE_CAKE: '초코케이크',
-	ICECREAM: '아이스크림',
+	ICE_CREAM: '아이스크림',
 	ZERO_COKE: '제로콜라',
 	RED_WINE: '레드와인',
 	CHAMPAGNE: '샴페인',
@@ -94,7 +96,7 @@ export const DISCOUNT_LIST = {
 	WEEKDAY_EVENT: '평일 할인: ',
 	WEEKEND_EVENT: '주말 할인: ',
 	STAR_EVENT: '특별 할인: ',
-	GIVEAWAY_EVENT: `증정 이벤트: ${'25,000'}원`,
+	GIVEAWAY_EVENT: `증정 이벤트: `,
 };
 export const ERROR = {
 	name: '[ERROR]',
