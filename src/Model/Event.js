@@ -10,13 +10,11 @@ import {
 	MENU,
 	CHRISTMAS_D_DAY,
 	GIVEAWAY_EVENT_MIN_PRICE,
-	NOTHING,
 } from '../constants.js';
 import menusData from '../menus.js';
 
 class Event {
 	#discount;
-	//    new Date() new Menu()
 	constructor(date, menu) {
 		this.#discount = [
 			this.#calculateDDayEventDiscount(date),
@@ -29,15 +27,12 @@ class Event {
 		this.getBadge = this.getBadge;
 	}
 	#calculateDDayEventDiscount(date) {
-		// console.log('디데이이벤트할인계산시작! ');
-		// console.log('date', date);
 		const dDayDate = date.getDate();
 		if (dDayDate > CHRISTMAS_D_DAY) {
 			return AMOUNT.ZERO;
-		} else {
-			const dDayDiscount = D_DAY_EVENT_STARTING_PRICE + D_DAY_EVENT_INCREASING_PRICE * (date.getDate() - 1);
-			return dDayDiscount;
 		}
+		const dDayDiscount = D_DAY_EVENT_STARTING_PRICE + D_DAY_EVENT_INCREASING_PRICE * (date.getDate() - 1);
+		return dDayDiscount;
 	}
 	#calculateWeekEventDiscount(date, menu) {
 		const isWeekend = date.getIsWeekend();
@@ -51,9 +46,8 @@ class Event {
 					weekDiscount += food.getAmount() * WEEK_EVENT_DISCOUNT;
 				});
 				return weekDiscount;
-			} else {
-				return AMOUNT.ZERO;
 			}
+			return AMOUNT.ZERO;
 		}
 		if (isWeekend) {
 			//main
@@ -64,18 +58,16 @@ class Event {
 					weekDiscount += food.getAmount() * WEEK_EVENT_DISCOUNT;
 				});
 				return weekDiscount;
-			} else {
-				return AMOUNT.ZERO;
 			}
+			return AMOUNT.ZERO;
 		}
 		return AMOUNT.ZERO;
 	}
 	#calculateStarredDayEventDiscount(date) {
 		if (date.getIsStarred(date)) {
 			return STARRED_DAY_EVENT_DISCOUNT;
-		} else {
-			return AMOUNT.ZERO;
 		}
+		return AMOUNT.ZERO;
 	}
 	#getDessertFoodArr(menu) {
 		const orderedFoodArr = menu.getFoodArr();
@@ -99,23 +91,17 @@ class Event {
 		});
 		return mainFoodArr;
 	}
-	// validateTotalPrice(totalPrice) {
-	// 	if (totalPrice < EVENT_MIN_PRICE) {
-	// 		return false;
-	// 	}
-	// 	return true;
-	// }
 	validateGiveAwayEvent(totalPricePreDiscount) {
 		if (totalPricePreDiscount >= GIVEAWAY_EVENT_MIN_PRICE) {
 			return true;
-		} else {
-			return false;
 		}
+		return false;
 	}
 	getTotalBenefits(totalPricePreDiscount) {
-		return this.#discount[0] + this.#discount[1] + this.#discount[2] + this.validateGiveAwayEvent(totalPricePreDiscount)
-			? menusData.get(MENU.CHAMPAGNE).price
-			: AMOUNT.ZERO;
+		if (this.validateGiveAwayEvent(totalPricePreDiscount)) {
+			return this.#discount[0] + this.#discount[1] + this.#discount[2] + menusData.get(MENU.CHAMPAGNE).price;
+		}
+		return this.#discount[0] + this.#discount[1] + this.#discount[2] + AMOUNT.ZERO;
 	}
 	getDiscountList() {
 		return this.#discount;
