@@ -1,4 +1,4 @@
-import { FIRST_DAY_OF_MONTH, LAST_DAY_OF_MONTH, EVENT_DAYS, ERROR } from '../constants.js';
+import { FIRST_DAY_OF_MONTH, LAST_DAY_OF_MONTH, EVENT_DAYS } from '../constants.js';
 import { DateError } from '../ErrorCases.js';
 class Date {
 	#date;
