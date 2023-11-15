@@ -12,21 +12,16 @@ class Food {
 		this.getCourse = this.getCourse;
 	}
 	#validateMenuName(name) {
-		// console.log('menusData', menusData);
-		// console.log('name - has:', name);
 		if (menusData.has(name)) {
-			// console.log('menuName', name);
 			return name;
-		} else {
-			throw new Error(ERROR.message.NOT_VALID_ORDER);
 		}
+		throw new Error(ERROR.message.NOT_VALID_ORDER);
 	}
 	#validateAmount(amount) {
 		if (amount >= MIN_AMOUNT && amount <= MAX_AMOUNT) {
 			return amount;
-		} else {
-			throw new Error(ERROR.message.NOT_VALID_ORDER );
 		}
+		throw new Error(ERROR.message.NOT_VALID_ORDER);
 	}
 	getName() {
 		return this.#name;
