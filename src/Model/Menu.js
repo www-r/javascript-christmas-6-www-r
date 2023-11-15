@@ -19,26 +19,30 @@ class Menu {
 				const food = new Food(name, amount);
 				foodArr.push(food);
 			});
-			// if (!this.#validateFoodArr(foodArr)) {
-			// 	throw new Error(ERROR.message.NOT_VALID_ORDER);
-			// }
 			return foodArr;
-		} else {
+		}
+		throw new Error(ERROR.message.NOT_VALID_ORDER);
+	}
+	#validateDuplicateMenu(foodArr) {
+		const foodNameArr = foodArr.map((food) => food.getName());
+		if (new Map(foodNameArr).size !== foodNameArr.length) {
 			throw new Error(ERROR.message.NOT_VALID_ORDER);
 		}
+		return foodArr;
 	}
-	// #validateFoodArr(foodArr) {
-	// 	if (foodArr.length === AMOUNT.ONE) {
-	// 		const foodName = foodArr[0].getName();
-	// 		if (menusData.get(foodName).course === COURSE.DRINKS) {
-	// 			return false;
-	// 		}
-	// 		return true;
-	// 	}
-	// }
+	#validateSingleDrink(foodArr) {
+		if (foodArr.length === 1) {
+			const foodName = foodArr[0].getName();
+			if (menusData.get(foodName).course === COURSE.DRINKS) {
+				throw new Error(ERROR.message.NOT_VALID_ORDER);
+			}
+		}
+		return foodArr;
+	}
+
 	#validateRegExp(string) {
 		if (!string.match(REG_EXP)) {
-			throw new Error(ERROR.NOT_VALID_ORDER);
+			throw new Error(ERROR.message.NOT_VALID_ORDER);
 		}
 	}
 	#validateMenu(string) {
@@ -50,9 +54,8 @@ class Menu {
 		if (Number.isInteger(number)) {
 			if (number >= MIN_AMOUNT && number <= MAX_AMOUNT) {
 				return number;
-			} else {
-				throw new Error(ERROR.message.NOT_VALID_ORDER);
 			}
+			throw new Error(ERROR.message.NOT_VALID_ORDER);
 		}
 	}
 	#calculateTotalAmount() {
@@ -62,6 +65,9 @@ class Menu {
 			const foodAmount = food.getAmount();
 			total += foodAmount;
 		});
+		if (total < MIN_AMOUNT) {
+			throw new Error(ERROR.message.NOT_VALID_ORDER);
+		}
 		if (total > MAX_AMOUNT) {
 			throw new Error(ERROR.message.NOT_VALID_ORDER);
 		}
