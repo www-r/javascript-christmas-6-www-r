@@ -1,11 +1,12 @@
-export const NOTHING = ''
+export const NOTHING = '';
+export const BLANK = ' '
 export const DIVIDER_COMMA = ',';
 export const DIVIDER_HYPHEN = '-';
 export const MONTH = 12;
 export const FIRST_DAY_OF_MONTH = 1;
 export const LAST_DAY_OF_MONTH = 31;
 export const CHRISTMAS_D_DAY = 25;
-export const EVENT_MIN_PRICE = 10000
+export const EVENT_MIN_PRICE = 10000;
 export const D_DAY_EVENT_STARTING_PRICE = 1000;
 export const D_DAY_EVENT_INCREASING_PRICE = 100;
 export const STARRED_DAY_EVENT_DISCOUNT = 1000;
@@ -83,13 +84,13 @@ export const ASK = {
 export const SEE_MORE_ABOUT_EVENTS = (scheduledDay) =>
 	`${MONTH}월 ${scheduledDay}일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!`;
 export const HEADER = Object.freeze({
-	MENU: '<주문 메뉴>',
-	TOTAL_PRICE_BEFORE_DISCOUNT: '<할인 전 총주문 금액>',
-	GIVEAWAY_MENU: '<증정 메뉴>',
-	BENEFITS_LIST: '<혜택 내역>',
-	TOTAL_BENEFITS_PRICE: '<총혜택 금액>',
-	TOTAL_PRICE_AFTER_DISCOUNT: '<할인 후 예상 결제 금액>',
-	EVENT_BADGE: `<${MONTH}월 이벤트 배지>`,
+	MENU: '\n<주문 메뉴>',
+	TOTAL_PRICE_BEFORE_DISCOUNT: '\n<할인 전 총주문 금액>',
+	GIVEAWAY_MENU: '\n<증정 메뉴>',
+	BENEFITS_LIST: '\n<혜택 내역>',
+	TOTAL_BENEFITS_PRICE: '\n<총혜택 금액>',
+	TOTAL_PRICE_AFTER_DISCOUNT: '\n<할인 후 예상 결제 금액>',
+	EVENT_BADGE: `\n<${MONTH}월 이벤트 배지>`,
 });
 export const DISCOUNT_LIST = {
 	D_DAY_EVENT: '크리스마스 디데이 할인: ',
@@ -99,10 +100,9 @@ export const DISCOUNT_LIST = {
 	GIVEAWAY_EVENT: `증정 이벤트: `,
 };
 export const ERROR = {
-	name: '[ERROR]',
 	message: {
-		NOT_VALID_NUMBER: '[ERROR]유효하지 않은 날짜입니다. 다시 입력해주세요.',
-		NOT_VALID_ORDER: '[ERROR]유효하지 않은 주문입니다. 다시 입력해주세요.',
+		NOT_VALID_NUMBER: '[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.',
+		NOT_VALID_ORDER: '[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.',
 	},
 };
 
