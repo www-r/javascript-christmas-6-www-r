@@ -13,30 +13,26 @@ class Date {
 			this.#validateInteger(number);
 			this.#validateRange(number);
 			return number;
-		} else {
-			throw new Error(ERROR.message.NOT_VALID_NUMBER);
 		}
+		throw new Error(ERROR.message.NOT_VALID_NUMBER);
 	}
 	#validateInteger(number) {
 		if (Number.isInteger(number)) {
 			return number;
-		} else {
-			throw new Error(ERROR.message.NOT_VALID_NUMBER);
 		}
+		throw new Error(ERROR.message.NOT_VALID_NUMBER);
 	}
 	#validateRange(number) {
 		if (number >= FIRST_DAY_OF_MONTH && number <= LAST_DAY_OF_MONTH) {
 			return number;
-		} else {
-			throw new Error(ERROR.message.NOT_VALID_NUMBER);
 		}
+		throw new Error(ERROR.message.NOT_VALID_NUMBER);
 	}
 	#validateIfWeekend(date) {
 		if (EVENT_DAYS.WEEKENDS.includes(date)) {
 			return true;
-		} else {
-			return false;
 		}
+		return false;
 	}
 	getDate() {
 		return this.#date;
@@ -47,7 +43,8 @@ class Date {
 	getIsStarred(date) {
 		if (EVENT_DAYS.STARRED_DAYS.includes(date.getDate())) {
 			return true;
-		} else return false;
+		}
+		return false;
 	}
 }
 
