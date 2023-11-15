@@ -9,3 +9,20 @@
 //3. 스트링인데 해당 정규표현식에 맞지 않을 때
 //4. 정규표현식 맞지만 없는 메뉴일 때
 //5. 정규표현식도 맞지만 메뉴 개수가 20개 초과일 때
+import { ERROR } from './constants';
+class DateError extends Error {
+	constructor(...params) {
+		super(...params);
+		this.message = ERROR.message.NOT_VALID_NUMBER;
+		this.name = ERROR.name.DATE;
+	}
+}
+class MenuError extends Error {
+	constructor(...params) {
+		super(...params);
+		this.message = ERROR.message.NOT_VALID_ORDER;
+		this.name = ERROR.name.ORDER;
+	}
+}
+
+export { DateError, MenuError };

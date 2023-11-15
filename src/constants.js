@@ -100,6 +100,10 @@ export const DISCOUNT_LIST = {
 	GIVEAWAY_EVENT: `증정 이벤트: `,
 };
 export const ERROR = {
+	name: {
+		DATE: '[DATE_ERROR]',
+		ORDER: '[ORDER_ERROR]',
+	},
 	message: {
 		NOT_VALID_NUMBER: '[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.',
 		NOT_VALID_ORDER: '[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.',

@@ -1,4 +1,5 @@
 import { FIRST_DAY_OF_MONTH, LAST_DAY_OF_MONTH, EVENT_DAYS, ERROR } from '../constants.js';
+import { DateError } from '../ErrorCases.js';
 class Date {
 	#date;
 	constructor(string) {
@@ -14,19 +15,19 @@ class Date {
 			this.#validateRange(number);
 			return number;
 		}
-		throw new Error(ERROR.message.NOT_VALID_NUMBER);
+		this.#throwError();
 	}
 	#validateInteger(number) {
 		if (Number.isInteger(number)) {
 			return number;
 		}
-		throw new Error(ERROR.message.NOT_VALID_NUMBER);
+		this.#throwError();
 	}
 	#validateRange(number) {
 		if (number >= FIRST_DAY_OF_MONTH && number <= LAST_DAY_OF_MONTH) {
 			return number;
 		}
-		throw new Error(ERROR.message.NOT_VALID_NUMBER);
+		this.#throwError();
 	}
 	#validateIfWeekend(date) {
 		if (EVENT_DAYS.WEEKENDS.includes(date)) {
@@ -45,6 +46,9 @@ class Date {
 			return true;
 		}
 		return false;
+	}
+	#throwError() {
+		throw new DateError();
 	}
 }
 

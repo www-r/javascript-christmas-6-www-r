@@ -1,4 +1,5 @@
 import Food from './Food.js';
+import { MenuError } from '../ErrorCases.js';
 import { AMOUNT, COURSE, DIVIDER_COMMA, DIVIDER_HYPHEN, ERROR, MAX_AMOUNT, MIN_AMOUNT, REG_EXP } from '../constants.js';
 import menusData from '../menus.js';
 class Menu {
@@ -21,12 +22,12 @@ class Menu {
 			});
 			return foodArr;
 		}
-		throw new Error(ERROR.message.NOT_VALID_ORDER);
+		this.#throwError();
 	}
 	#validateDuplicateMenu(foodArr) {
 		const foodNameArr = foodArr.map((food) => food.getName());
 		if (new Map(foodNameArr).size !== foodNameArr.length) {
-			throw new Error(ERROR.message.NOT_VALID_ORDER);
+			this.#throwError();
 		}
 		return foodArr;
 	}
@@ -34,7 +35,7 @@ class Menu {
 		if (foodArr.length === 1) {
 			const foodName = foodArr[0].getName();
 			if (menusData.get(foodName).course === COURSE.DRINKS) {
-				throw new Error(ERROR.message.NOT_VALID_ORDER);
+				this.#throwError();
 			}
 		}
 		return foodArr;
@@ -42,7 +43,7 @@ class Menu {
 
 	#validateRegExp(string) {
 		if (!string.match(REG_EXP)) {
-			throw new Error(ERROR.message.NOT_VALID_ORDER);
+			this.#throwError();
 		}
 	}
 	#validateMenu(string) {
@@ -55,7 +56,7 @@ class Menu {
 			if (number >= MIN_AMOUNT && number <= MAX_AMOUNT) {
 				return number;
 			}
-			throw new Error(ERROR.message.NOT_VALID_ORDER);
+			this.#throwError();
 		}
 	}
 	#calculateTotalAmount() {
@@ -66,10 +67,10 @@ class Menu {
 			total += foodAmount;
 		});
 		if (total < MIN_AMOUNT) {
-			throw new Error(ERROR.message.NOT_VALID_ORDER);
+			this.#throwError();
 		}
 		if (total > MAX_AMOUNT) {
-			throw new Error(ERROR.message.NOT_VALID_ORDER);
+			this.#throwError();
 		}
 		return total;
 	}
@@ -89,6 +90,9 @@ class Menu {
 	}
 	getTotalAmount() {
 		return this.#calculateTotalAmount();
+	}
+	#throwError() {
+		throw new MenuError();
 	}
 }
 export default Menu;

@@ -3,15 +3,7 @@ import OutputView from './View/OutputView.js';
 import Date from './Model/Date.js';
 import Menu from './Model/Menu.js';
 import Event from './Model/Event.js';
-import {
-	AMOUNT,
-	ASK,
-	DIVIDER_HYPHEN,
-	GREETING,
-	HEADER,
-	MENU,
-	SEE_MORE_ABOUT_EVENTS,
-} from './constants.js';
+import { AMOUNT, ASK, DIVIDER_HYPHEN, GREETING, HEADER, MENU, SEE_MORE_ABOUT_EVENTS } from './constants.js';
 import menusData from './menus.js';
 
 class App {
