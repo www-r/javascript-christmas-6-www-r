@@ -1,5 +1,5 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
-import { UNIT, DISCOUNT_LIST, AMOUNT, DIVIDER_HYPHEN, NOTHING } from '../constants.js';
+import { UNIT, DISCOUNT_LIST, AMOUNT, DIVIDER_HYPHEN, NOTHING, BLANK } from '../constants.js';
 const OutputView = class {
 	constructor() {
 		this.print = this.print;
@@ -11,17 +11,20 @@ const OutputView = class {
 	print(message) {
 		MissionUtils.Console.print(message);
 	}
-	printMenu(menuName, menuAmount) {
-		MissionUtils.Console.print(`${menuName} ${menuAmount}${UNIT.GAE}`);
+	printMenu(menuName, menuAmount, hyphen = BLANK) {
+		MissionUtils.Console.print(`${menuName}${hyphen}${menuAmount}${UNIT.GAE}`);
 	}
-	printMoney(number) {
-		MissionUtils.Console.print(`${number.toLocaleString()}${UNIT.WON}`);
+	printMoney(number, hyphen = NOTHING) {
+		if (number === AMOUNT.ZERO) {
+			MissionUtils.Console.print(`${AMOUNT.ZERO}${UNIT.WON}`);
+		}
+		MissionUtils.Console.print(`${hyphen}${number.toLocaleString()}${UNIT.WON}`);
 	}
 	printAmount(number) {
 		MissionUtils.Console.print(`${number}${UNIT.GAE}`);
 	}
 	printDiscountList(discountList, date) {
-		if (discountList[0] === 0 && discountList[1] === 0 && discountList[2] === 0) {
+		if (discountList[0] === AMOUNT.ZERO && discountList[1] === AMOUNT.ZERO && discountList[2] === AMOUNT.ZERO) {
 			MissionUtils.Console.print(AMOUNT.NONE);
 			return;
 		}
@@ -31,7 +34,6 @@ const OutputView = class {
 				UNIT.WON
 			}`
 		);
-		// console.log('discountList:', discountList);
 		if (isWeekend) {
 			MissionUtils.Console.print(
 				`${DISCOUNT_LIST.WEEKEND_EVENT}${
